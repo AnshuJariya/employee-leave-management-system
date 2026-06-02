@@ -14,12 +14,14 @@
         <input
                 type="email"
                 name="email"
+                id="email"
                 placeholder="Email"
                 required
                 autocomplete="new-email">
         <input type="password" id="password" placeholder="Password" required autocomplete="new-password" />
 
-        <select id="position">
+        <select id="position" required>
+            <option value="" selected disabled >Select your position</option>
             <option>Manager</option>
             <option>HR</option>
             <option>Counsellor</option>
@@ -38,27 +40,40 @@
 </div>
 
 <script>
-function signup() {
+    function signup() {
 
-     const data = {
-        username: document.getElementById("username").value,
-        password: document.getElementById("password").value,
-        position: document.getElementById("position").value
-    };
+        const username = document.getElementById("username").value.trim();
+        const password = document.getElementById("password").value.trim();
+        const position = document.getElementById("position").value;
 
-    fetch("/auth/signup", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(data)
-    })
-    .then(response => response.text())
-    .then(message => {
-        alert(message);
-        window.location.href = "/login.html";
-    });
-}
+        if (username === "" || password === "") {
+            alert("Username and Password are required");
+            return;
+        }
+        if(position === ""){
+        alert("Position is required");
+        return;
+        }
+
+        const data = {
+            username,
+            password,
+            position
+        };
+
+        fetch("/auth/signup", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => response.text())
+        .then(message => {
+            alert(message);
+            window.location.href = "/login.html";
+        });
+    }
 
 </script>
 
