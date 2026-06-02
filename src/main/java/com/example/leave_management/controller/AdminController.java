@@ -83,6 +83,12 @@ public class AdminController {
 
         leaveRepository.save(leave);
 
+        String email = leave.getEmployee().getEmail();
+
+        if (email != null && !email.isBlank()) {
+            emailService.sendLeaveStatusEmail(email, leave);
+        }
+
         return "Approved";
     }
 
@@ -97,6 +103,12 @@ public class AdminController {
         leave.setStatus("REJECTED");
 
         leaveRepository.save(leave);
+
+        String email = leave.getEmployee().getEmail();
+
+        if (email != null && !email.isBlank()) {
+            emailService.sendLeaveStatusEmail(email, leave);
+        }
 
         return "Rejected";
     }

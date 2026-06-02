@@ -42,38 +42,32 @@
 <script>
     function signup() {
 
-        const username = document.getElementById("username").value.trim();
-        const password = document.getElementById("password").value.trim();
-        const position = document.getElementById("position").value;
+     const username = document.getElementById("username").value.trim();
+     const password = document.getElementById("password").value.trim();
+     const email = document.getElementById("email").value.trim();
+     const position = document.getElementById("position").value;
 
-        if (username === "" || password === "") {
-            alert("Username and Password are required");
-            return;
-        }
-        if(position === ""){
-        alert("Position is required");
-        return;
-        }
+     const data = {
+         username: username,
+         password: password,
+         email: email,
+         position: position
+     };
 
-        const data = {
-            username,
-            password,
-            position
-        };
+     console.log(data);
 
-        fetch("/auth/signup", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(data)
-        })
-        .then(response => response.text())
-        .then(message => {
-            alert(message);
-            window.location.href = "/login.html";
-        });
-    }
+     fetch("/auth/signup", {
+         method: "POST",
+         headers: {
+             "Content-Type": "application/json"
+         },
+         body: JSON.stringify(data)
+     })
+     .then(response => response.text())
+     .then(message => {
+         alert(message);
+     });
+ }
 
 </script>
 

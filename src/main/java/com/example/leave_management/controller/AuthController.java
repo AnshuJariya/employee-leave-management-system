@@ -27,6 +27,7 @@ public class AuthController {
     public String signup(
             @Valid
             @RequestBody SignupRequest request) {
+        System.out.println("Email Received = " + request.getEmail());
 //        System.out.println("Position = " + request.getPosition());
 
         if (request.getUsername() == null || request.getUsername().equals("")) {

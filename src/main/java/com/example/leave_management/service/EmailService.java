@@ -14,36 +14,38 @@ public class EmailService {
     private JavaMailSender mailSender;
 
     @Async
-    public void sendLeaveStatusEmail(
-            String to,
-            LeaveRequest leave) {
+    public void sendLeaveStatusEmail(String to, LeaveRequest leave) {
 
-        SimpleMailMessage message =
-                new SimpleMailMessage();
+
+        if (leave == null || leave.getEmployee() == null) {
+            System.out.println("Leave or Employee is null");
+            return;
+        }
+
+        if (to == null || to.isBlank()) {
+            System.out.println("Email address is missing");
+            return;
+        }
+
+        System.out.println("Sending email to: " + email);
+
+        SimpleMailMessage message = new SimpleMailMessage();
 
         message.setTo(to);
-
-        message.setSubject(
-                "Leave Request Status Update");
+        message.setSubject("Leave Request Status Update");
 
         message.setText(
                 "Hello " + leave.getEmployee().getUsername() + ",\n\n" +
-
-                        "Your leave request has been "
-                        + leave.getStatus() + ".\n\n" +
-
-                        "Leave Details:\n" +
-                        "---------------------------------\n" +
+                        "Your leave request has been " + leave.getStatus() + ".\n\n"+
+                "Leave Details\n" +
+                        "-------------------------\n" +
                         "Application ID : " + leave.getId() + "\n" +
                         "Leave Type     : " + leave.getLeaveType() + "\n" +
                         "From Date      : " + leave.getFromDate() + "\n" +
                         "To Date        : " + leave.getToDate() + "\n" +
                         "Reason         : " + leave.getReason() + "\n" +
-//                        "Status         : " + leave.getStatus() + "\n" +
-                        "---------------------------------\n\n" +
+                        "Status         : " + leave.getStatus() + "\n\n"
 
-                        "Regards,\n" +
-                        "HR Team"
         );
 
         mailSender.send(message);
