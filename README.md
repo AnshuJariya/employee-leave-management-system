@@ -23,11 +23,12 @@
 - users
 - leave_requests
 
-## Screenshots
-(Add screenshots here)
-
 ## Run Project
 1. Create database leave_management
 2. Update application.properties
 3. Run LeaveManagementApplication.java
-4. Open http://localhost:8080/login.html
+4. Start the Spring Boot application.
+5. Open in browser:
+http://localhost:8080/login.html
+
+(Note: localhost works only on the machine where the application is running.)
