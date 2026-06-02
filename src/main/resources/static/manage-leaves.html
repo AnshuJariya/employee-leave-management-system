@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Manage Leaves</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="container">
+
+    <div class="card">
+
+        <h2>Leave Requests</h2>
+
+        <table>
+
+            <thead>
+
+            <tr>
+                <th>ID</th>
+                <th>Employee Name</th>
+                <th>Position</th>
+                <th>Type</th>
+                <th>From</th>
+                <th>To</th>
+                <th>Reason</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+
+            </thead>
+
+            <tbody id="leaveTable"></tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+<script>
+
+    loadLeaves();
+
+    function loadLeaves(){
+
+    fetch("/admin/leaves")
+    .then(res => res.json())
+    .then(data => {
+
+        let rows = "";
+
+        data.forEach(leave => {
+
+            rows += `
+           <tr>
+    <td>${leave.employee.id}</td>
+    <td>${leave.employee.username}</td>
+    <td>${leave.employee.position || 'N/A'}</td>
+    <td>${leave.leaveType}</td>
+    <td>${leave.fromDate}</td>
+    <td>${leave.toDate || 'Not Selected'}</td>
+    <td>${leave.reason}</td>
+    <td>
+    <span class="status ${leave.status.toLowerCase()}">
+        ${leave.status}
+    </span>
+</td>
+    <td>
+  <button onclick="toggleStatus(${leave.id})">
+
+    ${leave.status === 'APPROVED'
+        ? 'Reject'
+        : 'Approve'}
+
+</button>
+</td>
+</tr>
+            `;
+        });
+
+        document.getElementById("leaveTable")
+            .innerHTML = rows;
+    });
+    }
+
+function toggleStatus(id){
+
+    fetch(`/admin/toggle/${id}`,{
+        method:"PUT"
+    })
+    .then(() => loadLeaves());
+}
+
+</script>
+
+</body>
+</html>

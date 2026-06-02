@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Leave History</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="container">
+
+    <div class="card">
+
+        <h2>My Leave History</h2>
+
+        <table>
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>From</th>
+                <th>To</th>
+                <th>Reason</th>
+                <th>Status</th>
+            </tr>
+            </thead>
+
+            <tbody id="leaveTable"></tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+<script>
+
+    fetch("/employee/history")
+    .then(res => res.json())
+    .then(data => {
+
+        let rows = "";
+
+        data.forEach(leave => {
+
+            rows += `
+            <tr>
+                <td>${leave.employee.id}</td>
+                <td>${leave.employee.username}</td>
+                <td>${leave.leaveType}</td>
+                <td>${leave.fromDate}</td>
+                <td>${leave.toDate ? leave.toDate : 'Not Selected'}</td>
+                <td>${leave.reason}</td>
+                <td>${leave.status}</td>
+            </tr>
+            `;
+        });
+
+        document.getElementById("leaveTable").innerHTML = rows;
+    });
+
+</script>
+
+</body>
+</html>

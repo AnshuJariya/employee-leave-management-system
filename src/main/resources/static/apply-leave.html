@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Apply Leave</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="container">
+
+    <div class="card leave-form">
+
+        <h2>Apply Leave</h2>
+
+        <label>Leave Type</label>
+        <select id="leaveType">
+            <option>Sick Leave</option>
+            <option>Casual Leave</option>
+            <option>Paid Leave</option>
+
+        </select>
+
+        <label>From Date</label>
+        <input type="date" id="fromDate">
+
+        <label>To Date</label>
+        <input type="date" id="toDate">
+
+        <label>Reason</label>
+        <textarea id="reason"></textarea>
+
+        <button onclick="applyLeave()">
+            Submit
+        </button>
+
+    </div>
+
+</div>
+
+<script>
+
+    function applyLeave(){
+
+        fetch("/employee/apply",{
+
+            method:"POST",
+
+            headers:{
+                "Content-Type":"application/json"
+            },
+
+            body:JSON.stringify({
+
+                leaveType:
+                    document.getElementById("leaveType").value,
+
+                fromDate:
+                    document.getElementById("fromDate").value,
+
+                toDate:
+                    document.getElementById("toDate").value,
+
+                reason:
+                    document.getElementById("reason").value
+            })
+
+        })
+        .then(res=>res.text())
+        .then(data=>{
+
+            alert(data);
+
+            window.location.href =
+                "employee-dashboard.html";
+        });
+    }
+
+</script>
+
+</body>
+</html>

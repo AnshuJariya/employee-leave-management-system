@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Employee Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="dashboard-page">
+
+<div class="container">
+
+    <div class="nav">
+
+        <h2>Employee Dashboard</h2>
+
+        <a href="/logout">
+            Logout
+        </a>
+
+    </div>
+
+    <div class="card">
+
+        <h3>
+            Approved Leaves:
+            <span id="approved">0</span>
+        </h3>
+
+        <br>
+
+        <h3>
+            Pending Leaves:
+            <span id="pending">0</span>
+        </h3>
+
+        <br>
+
+        <a href="apply-leave.html">
+            Apply Leave
+        </a>
+
+        <br><br>
+
+        <a href="leave-history.html">
+            Leave History
+        </a>
+
+    </div>
+
+</div>
+
+<script>
+
+    fetch("/employee/dashboard")
+    .then(res=>res.json())
+    .then(data=>{
+
+        document.getElementById("approved")
+            .innerText=data.approved;
+
+        document.getElementById("pending")
+            .innerText=data.pending;
+    });
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="auth-page">
+
+<div class="container">
+    <div class="card">
+        <h2>Login</h2>
+
+        <form method="post" action="/login">
+            <div id="errorMessage"
+                 style="color:red; margin-bottom:10px;">
+            </div>
+
+            <input
+                    type="text"
+                    name="username"
+                    placeholder="Username"
+                    required
+                    autocomplete="new-username">
+
+
+            <input
+                    type="password"
+                    name="password"
+                    placeholder="Password"
+                    required
+                    autocomplete="new-password">
+
+            <button type="submit">
+                Login
+            </button>
+
+        </form>
+
+        <br>
+
+        <a href="/signup.html">
+            Create Account
+        </a>
+
+    </div>
+</div>
+<script>
+    const params = new URLSearchParams(window.location.search);
+
+    if (params.get("error")) {
+        document.getElementById("errorMessage")
+                .innerText =
+                "Invalid username or password";
+    }
+</script>
+
+</body>
+</html>

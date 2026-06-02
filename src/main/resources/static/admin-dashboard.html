@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body class="dashboard-page">
+
+<div class="dashboard">
+
+    <!-- Sidebar -->
+
+    <div class="sidebar">
+
+        <h2>Admin Panel</h2>
+
+        <ul>
+
+            <li>
+                <a href="#">
+                    📊 Dashboard
+                </a>
+            </li>
+
+            <li>
+                <a href="manage-leaves.html">
+                    👥 Manage All Leaves
+                </a>
+            </li>
+
+            <li>
+                <a href="/logout">
+                    🚪 Logout
+                </a>
+            </li>
+
+        </ul>
+
+        <hr>
+
+        <h3>Pending Leaves By Position</h3>
+
+        <div id="positionCounts"></div>
+
+    </div>
+
+    <!-- Main Content -->
+
+    <div class="main-content">
+
+        <h1>Admin Dashboard</h1>
+
+        <div class="dashboard-cards">
+
+            <div class="card stat-card">
+                <h3>Total Employees</h3>
+                <p id="employeesCount">0</p>
+            </div>
+
+            <div class="card stat-card">
+                <h3>Pending Leaves</h3>
+                <p id="pendingCount">0</p>
+            </div>
+
+            <div class="card stat-card">
+                <h3>Approved Leaves</h3>
+                <p id="approvedCount">0</p>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+    fetch("/admin/dashboard")
+    .then(res => res.json())
+    .then(data => {
+
+        document.getElementById("employees")
+            .innerText = data.employees;
+
+        document.getElementById("pending")
+            .innerText = data.pending;
+
+        document.getElementById("approved")
+            .innerText = data.approved;
+
+        document.getElementById("rejected")
+            .innerText = data.rejected;
+    });
+
+
+    async function loadPositionCounts() {
+
+        const response =
+            await fetch("/admin/position-count");
+
+        const data =
+            await response.json();
+
+        let html = "";
+
+        for (const position in data) {
+
+            html += `
+<div class="summary-item">
+
+    <a href="position-leaves.html?position=${encodeURIComponent(position)}">
+
+        ${position}
+
+    </a>
+
+    <strong>${data[position]}</strong>
+
+</div>
+`;
+        }
+
+        document.getElementById(
+            "positionCounts"
+        ).innerHTML = html;
+    }
+
+    loadPositionCounts();
+
+</script>
+
+
+</body>
+</html>

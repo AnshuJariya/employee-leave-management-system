@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Signup</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="auth-page">
+
+<div class="container">
+    <div class="card">
+        <h2>Employee Registration</h2>
+
+        <input type="text" id="username" placeholder="Username" required autocomplete="new-username" />
+        <input
+                type="email"
+                name="email"
+                placeholder="Email"
+                required
+                autocomplete="new-email">
+        <input type="password" id="password" placeholder="Password" required autocomplete="new-password" />
+
+        <select id="position">
+            <option>Manager</option>
+            <option>HR</option>
+            <option>Counsellor</option>
+            <option>Java Full Stack Developer</option>
+            <option>Mern Stack Developer</option>
+
+        </select>
+
+        <button onclick="signup()">Register</button>
+
+        <br><br>
+
+
+        <a href="login.html">Login</a>
+    </div>
+</div>
+
+<script>
+function signup() {
+
+     const data = {
+        username: document.getElementById("username").value,
+        password: document.getElementById("password").value,
+        position: document.getElementById("position").value
+    };
+
+    fetch("/auth/signup", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => response.text())
+    .then(message => {
+        alert(message);
+        window.location.href = "/login.html";
+    });
+}
+
+</script>
+
+</body>
+</html>
