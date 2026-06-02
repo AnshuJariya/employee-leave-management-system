@@ -24,12 +24,12 @@
 - leave_requests
 
 ## Screenshots
-<img width="1366" height="720" alt="Screenshot 2026-06-02 124659" src="https://github.com/user-attachments/assets/e3cbff9e-0583-47b6-a445-f02806aa41fb" />
-<img width="1366" height="720" alt="Screenshot 2026-06-02 124659" src="https://github.com/user-attachments/assets/fba7c58a-ad4f-4819-ad48-76f5f3481431" />
-<img width="1366" height="720" alt="Screenshot 2026-06-02 124618" src="https://github.com/user-attachments/assets/76bf851a-794a-4aa7-ac00-adc8fc802ab1" />
-<img width="1366" height="720" alt="Screenshot 2026-06-02 124540" src="https://github.com/user-attachments/assets/46aa1260-d4f9-4f99-a630-467cab5c59b7" />
-<img width="1366" height="720" alt="Screenshot 2026-06-02 124532" src="https://github.com/user-attachments/assets/8429cb7d-1f49-4533-a343-a46ba8004080" />
-<img width="1366" height="720" alt="Screenshot 2026-06-02 124434" src="https://github.com/user-attachments/assets/81cf1d17-8cc3-43ee-972c-c011f982263d" />
+<img width="1366" height="720" alt="Screenshot 2026-06-02 124341" src="https://github.com/user-attachments/assets/0c1e91bc-7368-4a15-8a9a-999237d57113" />
+<img width="1366" height="720" alt="Screenshot 2026-06-02 124434" src="https://github.com/user-attachments/assets/cba3008e-f172-4be2-88c1-8bfa14e3f4f2" />
+<img width="1366" height="720" alt="Screenshot 2026-06-02 124532" src="https://github.com/user-attachments/assets/de96a84c-9cc1-4337-ba46-06d18fe886fe" />
+<img width="1366" height="720" alt="Screenshot 2026-06-02 124540" src="https://github.com/user-attachments/assets/b2da69d2-0987-4987-abd7-34a21d6f6884" />
+<img width="1366" height="720" alt="Screenshot 2026-06-02 124618" src="https://github.com/user-attachments/assets/244d512d-3029-4cb9-8491-551dcef9dbcc" />
+<img width="1366" height="720" alt="Screenshot 2026-06-02 124659" src="https://github.com/user-attachments/assets/18c41751-f771-4c0f-8769-a12e7f7ac321" />
 
 ## Run Project
 1. Create database leave_management
