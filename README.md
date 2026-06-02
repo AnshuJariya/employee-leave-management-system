@@ -23,6 +23,10 @@
 - users
 - leave_requests
 
+## Screenshots
+<img width="1366" height="720" alt="Screenshot 2026-06-02 124659" src="https://github.com/user-attachments/assets/e3cbff9e-0583-47b6-a445-f02806aa41fb" />
+
+
 ## Run Project
 1. Create database leave_management
 2. Update application.properties
